@@ -1,0 +1,150 @@
+.container{
+margin: 300px;
+}
+.todo-container {
+    max-width: 1200px; /* Largeur augmentée pour un meilleur affichage */
+    padding-top: 80px;
+    padding: 80px;
+    margin-top: 150px;
+    margin-left: 150px;
+    background: linear-gradient(135deg, #74ebd5, #acb6e5); /* Dégradé de couleur */
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: transform 0.3s;
+    border-radius: 15px; /* Coins arrondis pour le conteneur */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Ombre pour le conteneur */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-size: cover; /* Assure que l'image couvre toute la page */
+    background-position: center; /* Centre l'image */
+    background-attachment: fixed; /* Rend l'image fixe lors du défilement */
+    height: 130vh; /* Assure que l'arrière-plan prend toute la hauteur de la vue */
+    overflow: hidden; /* Optionnel : pour éviter le défilement si l'image déborde */
+  }
+  
+h1 {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    font-size: 2.5rem; /* Taille du texte du titre */
+}
+
+.new-task {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.new-task input {
+    padding: 15px;
+    width: 70%; /* Largeur du champ de saisie */
+    border-radius: 25px;
+    border: 2px solid #00897b;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem; /* Taille de la police */
+    margin-right: 10px; /* Ajoutez cet espace entre le champ de saisie et le bouton */
+}
+
+.new-task button {
+    padding: 15px 30px;
+    background-color: #00897b;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-size: 1.2rem; /* Taille de la police */
+}
+
+.filters {
+    margin: 20px 0;
+}
+
+.filters button {
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: background-color 0.3s;
+}
+
+.filters button.active {
+    background-color: #00897b;
+    color: white;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+li:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.task-actions button {
+    background-color: #00897b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding: 10px 15px;
+    margin-right: 10px;
+}
+
+.alert {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Nouveaux styles pour le temps d'ajout */
+span small {
+    font-size: 0.9rem; /* Taille de police pour le temps d'ajout */
+    color: #888; /* Couleur du texte pour le temps d'ajout */
+    margin-left: 10px; /* Espace entre la tâche et le temps */
+    font-style: italic; /* Style de police pour un look distinct */
+}
+/* Styles pour les tâches importantes */
+span.important {
+    font-weight: bold;
+    color: #f39c12; /* Couleur orange pour les tâches importantes */
+}
+
+/* Styles pour les tâches urgentes */
+span.urgent {
+    color: #e74c3c; /* Couleur rouge pour les tâches urgentes */
+}
+
+/* Styles pour les notes */
+.notes {
+    font-size: 0.9rem;
+    color: #666; /* Couleur grise pour les notes */
+}
+
+/* Styles pour l'historique des tâches */
+.history {
+    font-size: 0.8rem;
+    color: #888; /* Couleur pâle pour l'historique */
+}
