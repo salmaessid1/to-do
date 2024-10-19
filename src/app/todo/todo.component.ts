@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 interface Task {
+title: any;
   name: string;
   completed: boolean;
   important: boolean;
-  urgent: boolean; // Nouvelle propriété pour les tâches urgentes
+  urgent: boolean; 
   addedTime: Date;
-  dueDate?: Date; // Date d'échéance
-  notes?: string; // Notes sur la tâche
-  priority?: number; // Priorité de la tâche
+  dueDate?: Date; 
+  notes?: string; 
+  isUrgent: boolean; // Nouvelle propriété pour indiquer si la tâche est urgente
+  priority?: number; 
 }
 
 @Component({
@@ -18,11 +20,12 @@ interface Task {
 })
 export class TodoComponent implements OnInit {
   newTask: string = '';
-  newTaskNotes: string = ''; // Notes pour la nouvelle tâche
-  newTaskDueDate: Date | null = null; // Date d'échéance pour la nouvelle tâche
+  newTaskNotes: string = ''; 
+  newTaskDueDate: Date | null = null; 
   tasks: Task[] = [];
-  filter: string = 'all'; // Filtrer les tâches (all, completed, active)
-  editingTask: Task | null = null;
+  filter: string = 'all'; 
+  editingTask: Task | null = null; // Gérer la tâche en cours d'édition
+  editingTaskName: string = ''; // Pour stocker le nom de la tâche pendant l'édition
 
   ngOnInit(): void {
     this.loadTasks();
@@ -47,9 +50,11 @@ export class TodoComponent implements OnInit {
         important: false,
         urgent: false,
         addedTime: new Date(),
-        dueDate: this.newTaskDueDate || undefined, // Ajout de la date d'échéance
-        notes: this.newTaskNotes || undefined, // Ajout des notes
-        priority: 1 // Par défaut, priorité de 1
+        dueDate: this.newTaskDueDate || undefined,
+        notes: this.newTaskNotes || undefined,
+        priority: 1,
+        isUrgent: false,
+        title: undefined
       };
       this.tasks.push(newTaskObj);
       this.newTask = '';
@@ -81,11 +86,16 @@ export class TodoComponent implements OnInit {
 
   editTask(task: Task) {
     this.editingTask = task;
+    this.editingTaskName = task.name; // Remplir le champ d'entrée avec le nom de la tâche
   }
 
-  updateTask(task: Task) {
-    this.editingTask = null;
-    this.saveTasks();
+  updateTask() {
+    if (this.editingTask) {
+      this.editingTask.name = this.editingTaskName; // Mettre à jour le nom de la tâche
+      this.editingTask = null; // Réinitialiser le mode d'édition
+      this.editingTaskName = ''; // Réinitialiser le champ d'entrée
+      this.saveTasks(); // Enregistrez les modifications
+    }
   }
 
   filterTasks(): Task[] {
@@ -95,14 +105,16 @@ export class TodoComponent implements OnInit {
     } else if (this.filter === 'active') {
       filteredTasks = filteredTasks.filter(task => !task.completed);
     }
-    return this.sortTasks(filteredTasks); // Tri des tâches après filtrage
+    return this.sortTasks(filteredTasks); 
   }
 
-  // Fonction pour trier les tâches par priorité
   sortTasks(tasks: Task[]): Task[] {
     return tasks.sort((a, b) => (a.priority || 0) - (b.priority || 0));
   }
 
+  markAsUrgent(task: Task) {
+    task.isUrgent = !task.isUrgent; // Bascule l'état de l'urgence
+  }
   remainingTasks(): number {
     return this.tasks.filter(t => !t.completed).length;
   }
@@ -110,20 +122,4 @@ export class TodoComponent implements OnInit {
   allCompleted(): boolean {
     return this.tasks.length > 0 && this.tasks.every(t => t.completed);
   }
-
-  // Ajouter une fonction pour marquer une tâche comme urgente
-  markAsUrgent(task: Task) {
-    task.urgent = !task.urgent;
-    this.saveTasks();
-  }
-
-  // Ajouter une fonction pour définir un rappel (simple exemple)
-  setReminder(task: Task, minutes: number) {
-    const reminderTime = new Date(task.addedTime);
-    reminderTime.setMinutes(reminderTime.getMinutes() + minutes);
-    // Logique pour gérer la notification par email
-    console.log(`Reminder set for ${task.name} in ${minutes} minutes!`);
-  }
-
-  
 }

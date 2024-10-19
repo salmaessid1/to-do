@@ -1,6 +1,7 @@
-.container{
-margin: 300px;
+.container {
+    margin: 300px;
 }
+
 .todo-container {
     max-width: 1200px; /* Largeur augmentée pour un meilleur affichage */
     padding-top: 80px;
@@ -25,8 +26,8 @@ body {
     background-attachment: fixed; /* Rend l'image fixe lors du défilement */
     height: 130vh; /* Assure que l'arrière-plan prend toute la hauteur de la vue */
     overflow: hidden; /* Optionnel : pour éviter le défilement si l'image déborde */
-  }
-  
+}
+
 h1 {
     font-family: 'Roboto', sans-serif;
     color: #333;
@@ -100,14 +101,36 @@ li:hover {
 }
 
 .task-actions button {
-    background-color: #00897b;
-    color: white;
+    padding: 10px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-    padding: 10px 15px;
-    margin-right: 10px;
+    margin-right: 10px; /* Espace entre les boutons */
+}
+
+.important-btn {
+    background-color: orange; /* Couleur orangée */
+    color: white; /* Couleur du texte */
+}
+
+.urgent-btn {
+    background-color: red; /* Couleur rouge */
+    color: white; /* Couleur du texte */
+}
+
+.edit-btn {
+    background-color: green; /* Couleur verte */
+    color: white; /* Couleur du texte */
+}
+
+.delete-btn {
+    background-color: rgb(238, 207, 31); /* Couleur jaune */
+    color: black; /* Couleur du texte pour le contraste */
+}
+
+.task-actions button:hover {
+    opacity: 0.8; /* Effet de survol */
 }
 
 .alert {
@@ -119,32 +142,33 @@ li:hover {
     font-weight: bold;
 }
 
-/* Nouveaux styles pour le temps d'ajout */
 span small {
     font-size: 0.9rem; /* Taille de police pour le temps d'ajout */
-    color: #888; /* Couleur du texte pour le temps d'ajout */
+    color: #888; /* Couleur du texte pour le temps */
     margin-left: 10px; /* Espace entre la tâche et le temps */
     font-style: italic; /* Style de police pour un look distinct */
 }
-/* Styles pour les tâches importantes */
+
 span.important {
     font-weight: bold;
     color: #f39c12; /* Couleur orange pour les tâches importantes */
 }
 
-/* Styles pour les tâches urgentes */
 span.urgent {
     color: #e74c3c; /* Couleur rouge pour les tâches urgentes */
 }
 
-/* Styles pour les notes */
 .notes {
     font-size: 0.9rem;
     color: #666; /* Couleur grise pour les notes */
 }
 
-/* Styles pour l'historique des tâches */
 .history {
     font-size: 0.8rem;
     color: #888; /* Couleur pâle pour l'historique */
 }
+li.urgent {
+    background-color: #ffcccc; /* Couleur de fond rouge pâle pour une tâche urgente */
+    border-left: 5px solid red; /* Ajoute une bordure rouge pour indiquer l'urgence */
+}
+
