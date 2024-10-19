@@ -15,32 +15,26 @@
             <button (click)="addTask()">Add Task</button>
         </div>
         
-        <ul>
-            <li *ngFor="let task of filterTasks()">
-                <input type="checkbox" (change)="toggleComplete(task)" [checked]="task.completed" />
-                <span [class.completed]="task.completed" [class.important]="task.important">
-                    <ng-container *ngIf="editingTask !== task; else editMode">
-                        {{ task.name }} - <small>{{ task.addedTime | date:'short' }}</small>
-                    </ng-container>
-                    <ng-template #editMode>
-                        <input [(ngModel)]="editingTaskName" />
-                    </ng-template>
-                </span>
-                
-                <div class="task-actions">
-                        
-                        <li *ngFor="let task of tasks" [class.urgent]="task.isUrgent">
-                            <button class="important-btn" (click)="toggleImportant(task)">Important</button>
-                    <button class="urgent-btn" (click)="markAsUrgent(task)">Urgent</button>
-                    <button class="edit-btn" (click)="editTask(task)" *ngIf="editingTask !== task">Edit</button>
-                    <button class="save-btn" (click)="updateTask()" *ngIf="editingTask === task">Save</button>
-                    <button class="delete-btn" (click)="deleteTask(task)">Delete</button>
-                </div>
-                <div class="notes">Notes: {{ task.notes }}</div>
-            </li>
-        </ul>
-        
-        <p>Tasks remaining: <strong>{{ remainingTasks() }}</strong></p>
-        <div *ngIf="allCompleted()" class="alert">Congratulations! You've completed all your tasks!</div>
-    </div>
+        <li *ngFor="let task of filterTasks()" [class.urgent]="task.isUrgent" [class.important]="task.important">
+            <input type="checkbox" (change)="toggleComplete(task)" [checked]="task.completed" />
+            <span [class.completed]="task.completed">
+                <ng-container *ngIf="editingTask !== task; else editMode">
+                    {{ task.name }} - <small>Date ajoutée : {{ task.addedTime | date:'short' }}</small>
+                    <small *ngIf="task.dueDate"> | Échéance : {{ task.dueDate | date:'short' }}</small>
+                </ng-container>
+                <ng-template #editMode>
+                    <input [(ngModel)]="editingTaskName" />
+                </ng-template>
+            </span>
+            <div class="task-actions">
+                <span>{{ task.title }}</span>
+                <button class="important-btn" (click)="toggleImportant(task)">Important</button>
+                <button class="urgent-btn" (click)="markAsUrgent(task)">Urgent</button>
+                <button class="edit-btn" (click)="editTask(task)" *ngIf="editingTask !== task">Edit</button>
+                <button class="save-btn" (click)="updateTask()" *ngIf="editingTask === task">Save</button>
+                <button class="delete-btn" (click)="deleteTask(task)">Delete</button>
+            </div>
+            <div class="notes">Notes: {{ task.notes }}</div>
+        </li>        
+      </div>  
 </body>

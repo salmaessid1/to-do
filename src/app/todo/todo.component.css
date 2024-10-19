@@ -171,4 +171,31 @@ li.urgent {
     background-color: #ffcccc; /* Couleur de fond rouge pâle pour une tâche urgente */
     border-left: 5px solid red; /* Ajoute une bordure rouge pour indiquer l'urgence */
 }
+/* Style pour les tâches urgentes */
+li.urgent {
+    color: red; /* Change la couleur du texte en rouge */
+    font-weight: bold; /* Rend le texte plus visible */
+}
+.urgent-btn {
+    background-color: red; /* Couleur rouge */
+    color: white; /* Couleur du texte */
+}
 
+.save-btn {
+    background-color: rgb(78, 74, 78); 
+    color: white; 
+}
+/* Style pour les tâches importantes */
+li.important {
+    border-left: 5px solid orange; /* Une bordure orange à gauche pour indiquer l'importance */
+    background-color: #fff3e0; /* Couleur de fond légèrement teintée pour les tâches importantes */
+}
+
+.important-btn {
+    background-color: orange; /* Couleur de fond pour le bouton Important */
+    color: white; /* Couleur du texte */
+}
+
+.important-btn:hover {
+    background-color: darkorange; /* Couleur au survol */
+}

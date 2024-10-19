@@ -11,6 +11,7 @@ title: any;
   notes?: string; 
   isUrgent: boolean; // Nouvelle propriété pour indiquer si la tâche est urgente
   priority?: number; 
+ 
 }
 
 @Component({
@@ -42,6 +43,7 @@ export class TodoComponent implements OnInit {
     }
   }
 
+    
   addTask() {
     if (this.newTask.trim()) {
       const newTaskObj: Task = {
@@ -50,11 +52,11 @@ export class TodoComponent implements OnInit {
         important: false,
         urgent: false,
         addedTime: new Date(),
-        dueDate: this.newTaskDueDate || undefined,
-        notes: this.newTaskNotes || undefined,
-        priority: 1,
-        isUrgent: false,
-        title: undefined
+        dueDate: this.newTaskDueDate || undefined, // Ajout de la date d'échéance
+        notes: this.newTaskNotes || undefined, // Ajout des notes
+        priority: 1,// Par défaut, priorité de 1
+        title: undefined,
+        isUrgent: false
       };
       this.tasks.push(newTaskObj);
       this.newTask = '';
@@ -77,6 +79,7 @@ export class TodoComponent implements OnInit {
   toggleImportant(task: Task) {
     task.important = !task.important;
     this.saveTasks();
+
   }
 
   toggleUrgent(task: Task) {
@@ -115,6 +118,7 @@ export class TodoComponent implements OnInit {
   markAsUrgent(task: Task) {
     task.isUrgent = !task.isUrgent; // Bascule l'état de l'urgence
   }
+  
   remainingTasks(): number {
     return this.tasks.filter(t => !t.completed).length;
   }
